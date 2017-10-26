@@ -1,29 +1,44 @@
 <template>
-<div class="offset-top">
-  <div class="outline-nav">
-		<h1>Outline</h1>
-    <ul>
-      <li v-for='outline in outlines'>
-        <a href='#' @click='jumpToOutline(outline)'>{{ outline }}</a>
-      </li>
-    </ul>
-  </div>
+<div class="offset-top container">
+  <div class="row">
+    <div class='col-md-3'>
 
-  <rsna-standard-template :rsna="study" :nodules="nodules"></rsna-standard-template>
+      <outline-nav :outlines="outlines"></outline-nav>
+
+    </div>
+
+    <div class='col-md-9'>
+      <rsna-standard-template :rsna="study" :nodules="nodules"></rsna-standard-template>
+    </div>
+
+  </div>
 
 </div>
 </template>
 
+<style media="screen" lang="scss" scoped>
+.offset-top {
+    margin-top: 5em;
+}
+@media screen and (max-width: 990px) {
+    .offset-top {
+        margin-top: 10em;
+    }
+}
+</style>
+
 <script>
-import RSNAStandardTemplate from '../components/RSNAStandardTemplate'
+import RSNAStandardTemplate from '../components/report-and-export/RSNAStandardTemplate'
+import OutlineNav from '../components/report-and-export/OutlineNav'
 
 export default {
   components: {
-    'rsna-standard-template': RSNAStandardTemplate
+    'rsna-standard-template': RSNAStandardTemplate,
+    OutlineNav
   },
   data () {
     return {
-      outlines: ['Overview', 'RSNAStandardTemplate', 'ACR Lung-RAD tm Findings', 'Export 3D Imagery'],
+      outlines: [ 'Overview', 'RSNA Standard Template', 'ACR Lung-RAD™ Findings', 'Export 3D Imagery' ],
       study: {
         kVp: null,
         mA: null,
@@ -65,15 +80,3 @@ export default {
   }
 }
 </script>
-
-<style media="screen">
-.offset-top {
-  margin-top: 5em;
-}
-
-@media screen and (max-width: 990px) {
-  .offset-top {
-    margin-top: 10em;
-  }
-}
-</style>
