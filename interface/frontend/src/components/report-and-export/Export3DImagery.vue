@@ -38,14 +38,5 @@ export default {
     }
 
   }
-
-  h2 {
-    padding-left: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  section {
-    margin-bottom: 3em;
-  }
 }
 </style>

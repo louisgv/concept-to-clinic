@@ -8,8 +8,7 @@
     <div class='col-md-9'>
       <rsna-standard-template
         v-show="activeOutlineId === '#RSNA'"
-        :rsna="study"
-        :nodules="nodules">
+        :rsna="study">
       </rsna-standard-template>
 
       <acr-lung-rad-findings
@@ -74,64 +73,70 @@ export default {
         }
       ],
       study: {
-        technical: [
-          {
-            name: 'kVp',
+        technical: {
+          kVp: {
             value: 120
           },
-          {
-            name: 'mA',
+          mA: {
             value: 93
           },
-          {
-            name: 'DLP',
+          DLP: {
             value: 18,
             unit: 'µSv/mGy'
           }
-        ],
-        clinical: [
-          {
-            name: 'Screening Visit',
-            value: 'Year 1'
+        },
+        clinical: {
+          visit: 'Year 1',
+          reason: 'Lung cancer screening'
+        },
+        comparison: 'None.',
+        findings: {
+          exam: {
+            diagnosticQuality: this.$constants.DIAGNOSTIC_QUALITY.SATISFACTORY,
+            comments: 'None.'
           },
-          {
-            name: 'Clinical Information',
-            value: 'Lung cancer screening'
+          lungNodules: [{
+            solidity: this.$constants.SOLIDITY.SOLID,
+            lung_orientation: this.$constants.LUNG_ORIENTATION.LEFT,
+            condition: this.$constants.CONDITION.INCREASED,
+            image: '/path/to/image'
+          }],
+          lungs: {
+            copd: this.$constants.SEVERITY.SEVERE,
+            fibrosis: this.$constants.SEVERITY.MILD,
+            lymphNodes: 'None.',
+            otherFindings: 'None.'
+          },
+          rightPleuralSpace: {
+            effusion: this.$constants.SIZE.MODERATE,
+            calcification: this.$constants.SPREAD.EXTENSIVE,
+            thickening: this.$constants.SPREAD.NONE,
+            pneumothorax: this.$constants.SIZE.LARGE
+          },
+          leftPleuralSpace: {
+            effusion: this.$constants.SIZE.MODERATE,
+            calcification: this.$constants.SPREAD.EXTENSIVE,
+            thickening: this.$constants.SPREAD.NONE,
+            pneumothorax: this.$constants.SIZE.LARGE
+          },
+          heart: {
+            sizeEnlargement: this.$constants.SIZE.LARGE,
+            coronaryCalcification: this.$constants.SEVERITY.MODERATE,
+            pericardialEffusion: this.$constants.SEVERITY.SEVERE
+          },
+          other: {
+            upperAbdomen: 'None.',
+            thorax: 'None.',
+            baseOfNeck: 'None.'
           }
-        ],
-        screeningVisit: 'Year 1',
-        clinicalInformation: 'Lung cancer screening',
-        comparison: 'null',
-        diagnosticQuality: 'SF',
-        examParametersComment: '',
-        COPD: 0,
-        filiosis: 0,
-        lymphNodes: 'null.',
-        otherFindings: 'null.',
-        rightPleuralSpace: {
-          effusion: 0,
-          calcification: 0,
-          thickening: 0,
-          pneumothorax: 0
         },
-        leftPleuralSpace: {
-          effusion: 0,
-          calcification: 0,
-          thickening: 0,
-          pneumothorax: 0
-        },
-        heartSize: 0,
-        coronaryCalcification: 0,
-        pericardialEffusion: 0,
-        upperAbdomen: 'null',
-        thorax: 'null',
-        baseOfNeck: 'null',
-        needComparison: 'No',
-        repeatCT: 'T1',
-        seePhysician: 'NO',
-        impressionComment: ''
-      },
-      nodules: []
+        impression: {
+          needComparison: 'Yes',
+          repeatCT: this.$constants.REPEAT_CT.SIX_MONTH,
+          seePhysician: this.$constants.PHYSICIAN_VISIT.YES_CANCER,
+          comments: 'None.'
+        }
+      }
     }
   }
 }

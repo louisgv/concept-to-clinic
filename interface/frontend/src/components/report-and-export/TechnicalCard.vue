@@ -33,10 +33,10 @@ export default {
 		text-shadow: 0 2px 5px rgba(0, 0, 0, .5);
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
 
-		transition: 0.5s;
+		transition: 0.5s ease;
 
 		&:hover {
-			transform: scale(1.35);
+			transform: scale(1.18);
 			z-index: 9999;
 		}
 
@@ -75,7 +75,7 @@ export default {
     }
 
     h3 {
-        font-size: 1em;
+        font-size: 1.44em;
     }
 }
 </style>
