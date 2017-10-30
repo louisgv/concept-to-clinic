@@ -1,24 +1,39 @@
 <template>
 <div class="rsna-standard-template-container">
-  <header>
-    <h1>RSNA Standard Template</h1>
+  <header class="bg-inverse">
+    <h1>
+      RSNA Standard Template
+    </h1>
+    <button class="btn btn-lg btn-warning">
+      Export
+    </button>
   </header>
 
   <section id="technical-parameters">
     <h2>Technical parameters</h2>
 
     <div class="technical-card-container">
-      <technical-card label='kVp' :value='rsna.kVp'></technical-card>
-      <technical-card label='mA' :value='rsna.mA'></technical-card>
-      <technical-card label='DLP' :value='rsna.DLP'></technical-card>
+      <technical-card v-for="(item, index) in rsna.technical"
+        :key="item.name"
+        :detail="item"
+        :style="{background: technicalBackground[index]}">
+      </technical-card>
     </div>
 
   </section>
 
   <section id="clinical-information">
     <h2>Clinical information</h2>
-    <li>Screening visit: {{ rsna.screeningVisit }}</li>
-    <li>{{ rsna.clinicalInformation }}</li>
+    <div class="technical-card-container">
+      <technical-card v-for="(item, index) in rsna.clinical"
+        :key="item.name"
+        :detail="item"
+        :style="{
+          width: '45%',
+          height: '18em',
+          background: technicalBackground[index]
+        }"></technical-card>
+    </div>
   </section>
 
   <section id="findings">
@@ -78,6 +93,11 @@ export default {
   components: {
     TechnicalCard
   },
+  data () {
+    return {
+      technicalBackground: ['#60D9F1', '#5770F9', '#453DF4']
+    }
+  },
   props: [ 'rsna', 'nodules' ],
   methods: {
 
@@ -88,15 +108,40 @@ export default {
 <style lang="scss" scoped>
 .rsna-standard-template-container {
 
+  header {
+    display: flex;
+    justify-content: space-between;;
+    align-items: center;
+    color: white;
+    padding-left: 2em;
+    font-weight: normal;
+    letter-spacing: 2px;
+		margin-bottom: 10px;
 
+    padding-right: 10%;
 
-	#technical-parameters {
+    h1 {
+      font-size: 2.5em;
 
+      line-height: 2em;
+      margin: 0;
+    }
 
-		.technical-card-container {
-			display: flex;
-			justify-content: space-around;
-		}
-	}
+  }
+
+  h2 {
+    padding-top: 0.5em;
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  section {
+    margin-bottom: 3em;
+  }
+
+  .technical-card-container {
+    display: flex;
+    justify-content: space-around;
+  }
 }
 </style>
