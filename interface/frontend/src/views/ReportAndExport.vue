@@ -96,10 +96,11 @@ export default {
             comments: 'None.'
           },
           lungNodules: [{
+            size: 3,
             solidity: this.$constants.SOLIDITY.SOLID,
-            lung_orientation: this.$constants.LUNG_ORIENTATION.LEFT,
+            lung_orientation: this.$constants.LUNG_ORIENTATION.RIGHT,
             condition: this.$constants.CONDITION.INCREASED,
-            image: '/path/to/image'
+            image: 'http://www.website-go.com/acc/start_clip_image002.jpg'
           }],
           lungs: {
             copd: this.$constants.SEVERITY.SEVERE,
