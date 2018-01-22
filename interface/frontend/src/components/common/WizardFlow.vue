@@ -1,5 +1,9 @@
 <template>
-<form-wizard>
+  <!-- @on-complete="onComplete"  -->
+<form-wizard
+  title subtitle
+  shape="tab"
+  color="#453DF4">
   <tab-content title="Personal details">
     My first tab content
   </tab-content>
