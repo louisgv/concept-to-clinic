@@ -23,18 +23,16 @@ export default {
   computed: {
     ...mapGetters({
       imageInProgress: 'imageInProgress',
-      caseInProgress: 'caseInProgress',
-      caseInProgressIsValid: 'caseInProgressIsValid',
       candidatesExist: 'candidatesExist'
     }),
     steps () {
       return [{
         name: 'Select a Case or Import Imagery',
-        active: this.candidatesExist && this.caseInProgress
+        active: this.candidatesExist || this.imageInProgress.id
       },
       {
         name: 'Create a new Case',
-        active: this.imageInProgress.id || this.candidatesExist
+        active: this.imageInProgress.id && this.imageInProgress.caseCreated
       },
       {
         name: 'Case is Ready',

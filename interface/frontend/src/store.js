@@ -13,8 +13,8 @@ const actions = {
     axios.get(API_ROOT)
       .then((response) => { commit('GET_ENDPOINTS', response.data) })
   },
-  loadImagery ({ commit }, { id }) {
-    commit('SET_IMAGE_IN_PROGRESS', { id })
+  loadImagery ({ commit }, { id, caseCreated }) {
+    commit('SET_IMAGE_IN_PROGRESS', { id, caseCreated })
   },
   loadCase ({ commit }, { url }) {
     axios.get(url)
