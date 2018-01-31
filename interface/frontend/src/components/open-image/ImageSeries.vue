@@ -103,14 +103,13 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="float-right">
-                  <button class="btn btn-success" :disabled="!selectedUri" @click="startNewCase()">
+                  <button class="btn btn-success" :disabled="!imageInProgress.id" @click="startNewCase()">
                     Start New Case
                   </button>
                 </div>
                 <tree-view class="item left"
                            :model="directories"
-                           :parent="directories.name"
-                           :selectedSeries="selectedUri">
+                           :parent="directories.name">
                 </tree-view>
               </div>
               <div class="col-md-4">
@@ -152,7 +151,6 @@
           paths: [],
           state: ''
         },
-        selectedUri: null,
         showImport: false
       }
     },
@@ -225,8 +223,7 @@
       },
       async startNewCase () {
         if (!this.imageInProgress.id) {
-          console.error('No Imagery Selected');
-          return;
+          return console.error('No Imagery Selected')
         }
         await this.$store.dispatch('startNewCase', {'uri': this.imageInProgress.id})
         setTimeout(() => { this.refreshAvailableCases() }, 1000)
