@@ -110,8 +110,7 @@
                 <tree-view class="item left"
                            :model="directories"
                            :parent="directories.name"
-                           :selectedSeries="selectedUri"
-                           v-on:selectSeries="selectSeries">
+                           :selectedSeries="selectedUri">
                 </tree-view>
               </div>
               <div class="col-md-4">
@@ -165,6 +164,7 @@
         endpoints: 'endpoints',
         caseInProgress: 'caseInProgress',
         caseInProgressIsValid: 'caseInProgressIsValid',
+        imageInProgress: 'imageInProgress',
         candidatesExist: 'candidatesExist'
       })
     },
@@ -223,12 +223,12 @@
           this.selectCase(case_)
         }
       },
-      selectSeries (seriesId) {
-        console.log('selecting ', seriesId)
-        this.selectedUri = seriesId
-      },
       async startNewCase () {
-        await this.$store.dispatch('startNewCase', {'uri': this.selectedUri})
+        if (!this.imageInProgress.id) {
+          console.error('No Imagery Selected');
+          return;
+        }
+        await this.$store.dispatch('startNewCase', {'uri': this.imageInProgress.id})
         setTimeout(() => { this.refreshAvailableCases() }, 1000)
       },
       displayName (case_) {
